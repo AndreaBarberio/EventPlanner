@@ -1,8 +1,8 @@
-import "./App.css";
+import "./index.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-red-700">
       <div className="container"></div>
     </div>
   );
