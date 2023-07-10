@@ -1,7 +1,7 @@
 import React from 'react';
-import './index.css';
+import './output.css';
 function App() {
-	return <div className="App bg-blue-800">ciao</div>;
+	return <div className="App bg-red-200">ciao</div>;
 }
 
 export default App;
