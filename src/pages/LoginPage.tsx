@@ -43,7 +43,9 @@ const LoginPage = (props: TLoginPage) => {
 	// Define the 'handleSubmit' function to handle form submission
 	const handleSubmit = async () => {
 		try {
+			// Esegui la validazione utilizzando lo schema di validazione
 			await validationSchema.validate(credentials, { abortEarly: false });
+			// Nessun errore di validazione, reimposta tutti gli errori a false
 			setErrors({
 				passwordLengthError: false,
 				userNotInsertedError: false,
@@ -51,40 +53,49 @@ const LoginPage = (props: TLoginPage) => {
 				wrongPasswordError: false,
 			});
 		} catch (error) {
+			// gestione dell'errore di validazione
 			if (error instanceof Yup.ValidationError) {
+				// Reimposta tutti gli errori a false per pulire gli errori precedenti
 				setErrors({
 					passwordLengthError: false,
 					userNotInsertedError: false,
 					wrongUserError: false,
 					wrongPasswordError: false,
 				});
+
+				// Scorre gli errori di validazione interni ciclando error.inner
 				error.inner.forEach((validationError) => {
+					// Verifica se l'errore riguarda la lunghezza della password
 					if (
 						validationError.path === 'password' &&
 						validationError.type === 'min'
 					) {
+						// Imposta l'errore sulla lunghezza della password a true
 						setErrors((prevErrors) => ({
 							...prevErrors,
 							passwordLengthError: true,
 						}));
 					}
+
+					// Verifica se l'errore riguarda l'utente non inserito
 					if (
 						validationError.path === 'username' &&
 						validationError.type === 'required'
 					) {
+						// Imposta l'errore sull'utente non inserito a true
 						setErrors((prevErrors) => ({
 							...prevErrors,
 							userNotInsertedError: true,
 						}));
 					}
-					// Gestisci gli altri tipi di errore in base alle tue esigenze
 				});
 			}
+
+			// Stampa l'errore di validazione nella console
 			console.log('Validation error:', error);
 		}
 	};
 
-	// Render the login form using Material-UI components
 	return (
 		<Container maxWidth="sm" className="mt-20">
 			<form action="submit">
