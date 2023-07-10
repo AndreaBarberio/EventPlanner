@@ -1,7 +1,13 @@
 import React from 'react';
 import './output.css';
-function App() {
-	return <div className="App bg-red-200">ciao</div>;
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+function App({ args }: any) {
+	return (
+		<Routes>
+			<Route path="/" element={<LoginPage {...args} />} />
+		</Routes>
+	);
 }
 
 export default App;
