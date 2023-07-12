@@ -97,7 +97,7 @@ const LoginPage = (props: TLoginPage) => {
 	};
 
 	return (
-		<Container maxWidth="sm" className="mt-20">
+		<Container maxWidth="sm" className="mt-20 w-fit h-fit">
 			<form action="submit">
 				<Grid container spacing={3} direction="column" alignItems="center">
 					<Grid item>
