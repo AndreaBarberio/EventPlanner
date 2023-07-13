@@ -8,9 +8,9 @@ type TLayoutProps = {
 
 export default function Layout({ children }: TLayoutProps) {
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col justify-between w-full h-full">
 			<Navbar />
-			<div className="p-4">{children}</div>
+			<div className="flex-auto">{children}</div>
 			<Footer className="" />
 		</div>
 	);

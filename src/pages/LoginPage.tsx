@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Grid } from '@mui/material';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 // Define the type for the props received by the LoginPage component
 type TLoginPage = {
@@ -97,9 +98,9 @@ const LoginPage = (props: TLoginPage) => {
 	};
 
 	return (
-		<Container maxWidth="sm" className="mt-20 w-fit h-fit">
+		<Container maxWidth="sm" className="w-full h-full my-4">
 			<form action="submit">
-				<Grid container spacing={3} direction="column" alignItems="center">
+				<Grid container spacing={4} direction="column" alignItems="center">
 					<Grid item>
 						<h1 className="text-3xl">Login</h1>
 					</Grid>
@@ -145,6 +146,14 @@ const LoginPage = (props: TLoginPage) => {
 						<Button variant="contained" color="primary" onClick={handleSubmit}>
 							Login
 						</Button>
+					</Grid>
+					<Grid item>
+						<small className="text-blue-400">
+							Do not have an account yet?
+							<Link className="text-blue-500 ml-1" to="/sign-up">
+								Register Here
+							</Link>
+						</small>
 					</Grid>
 				</Grid>
 			</form>

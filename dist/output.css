@@ -609,6 +609,23 @@ video {
   margin: 0.5rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.\!mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
 .ml-6 {
   margin-left: 1.5rem;
 }
@@ -647,6 +664,10 @@ video {
   height: fit-content;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
 .w-auto {
   width: auto;
 }
@@ -659,6 +680,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.max-w-md {
+  max-width: 28rem;
 }
 
 .flex-shrink {
@@ -736,6 +761,16 @@ video {
   line-height: 2.25rem;
 }
 
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -787,6 +822,10 @@ video {
 body {
   color: inherit;
   background: white;
+}
+
+.MuiMenu-paper::-webkit-scrollbar {
+  display: none;
 }
 
 .hover\:text-\[\#9d85d1\]:hover {

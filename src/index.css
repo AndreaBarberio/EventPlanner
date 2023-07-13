@@ -15,13 +15,29 @@
 		--background-end-rgb: 0, 0, 0;
 	}
 }
+
 * {
 	margin: 0;
 	padding: 0;
-	height: 100%;
-	width: 100%;
+}
+html {
+	width: 100vw;
+	height: 100vh;
 }
 body {
 	color: inherit;
 	background: white;
+}
+#root,
+body {
+	width: 100%;
+	height: 100%;
+}
+.MuiMenu-paper::-webkit-scrollbar {
+	display: none;
+}
+
+.social > svg {
+	width: 100%;
+	height: 100%;
 }

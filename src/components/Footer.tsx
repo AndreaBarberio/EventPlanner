@@ -38,7 +38,7 @@ const Footer = ({ className }: IFooterProps) => {
 		<div
 			className={twMerge(className ? `${itemStyle} ${className}` : itemStyle)}
 		>
-			<div className="flex flex-col md:flex-row">
+			<div className="flex flex-col md:flex-row justify-between">
 				<div className="grid grid-cols-2 p-2 text-center sm:text-start">
 					{footerItems?.map((item, i) => (
 						<div
@@ -49,10 +49,10 @@ const Footer = ({ className }: IFooterProps) => {
 						</div>
 					))}
 				</div>
-				<div className="flex flex-row md:ml-auto p-8 bg-blue-300">
+				<div className="flex flex-row mx-auto p-4 bg-blue-300">
 					{socialIcons.map((social, i) => (
 						<div
-							className="text-white h-8 m-2 flex self-center hover:text-gray-300 cursor-pointer"
+							className="social w-[24px] h-[24px] m-2 md:w-[52px] md:h-[52px] text-white ml-2 flex self-center hover:text-gray-300 cursor-pointer"
 							key={i}
 						>
 							{social.icon}
