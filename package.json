@@ -28,9 +28,9 @@
 		"yup": "^1.2.0"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"start": "react-scripts start --cwd /front/src/",
+		"build": "react-scripts build --cwd front",
+		"test": "react-scripts test --cwd front",
 		"eject": "react-scripts eject",
 		"tailwind:watch": "tailwindcss -i ./src/index.css -o ./dist/output.css --watch",
 		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
