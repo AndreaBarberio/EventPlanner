@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, Container, Grid } from '@mui/material';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // Define the type for the props received by the LoginPage component
 type TLoginPage = {
 	values: Record<string, unknown>;
@@ -12,17 +12,17 @@ type TLoginPage = {
 	handleSubmit: () => void;
 };
 const validationSchema = Yup.object({
-	username: Yup.string().required('Username is required'),
+	email: Yup.string().required('email is required'),
 	password: Yup.string()
 		.min(6, 'Password must be at least 6 characters')
 		.required('Password is required'),
 });
-
 // Define the LoginPage component
 const LoginPage = (props: TLoginPage) => {
 	// Define the state variable 'credentials' and a function to update it using the 'useState' hook
+	const navigate = useNavigate();
 	const [credentials, setCredentials] = useState<Record<string, unknown>>({
-		username: '',
+		email: '',
 		password: '',
 	});
 	const [errors, setErrors] = useState({
@@ -46,13 +46,29 @@ const LoginPage = (props: TLoginPage) => {
 		try {
 			// Esegui la validazione utilizzando lo schema di validazione
 			await validationSchema.validate(credentials, { abortEarly: false });
-			// Nessun errore di validazione, reimposta tutti gli errori a false
-			setErrors({
-				passwordLengthError: false,
-				userNotInsertedError: false,
-				wrongUserError: false,
-				wrongPasswordError: false,
-			});
+			const resp = await axios.post(
+				'http://127.0.0.1:3001/api/v1/user/login',
+				credentials
+			);
+			console.log('Resp: ', resp);
+
+			if (resp?.status === 200) {
+				// Nessun errore di validazione, reimposta tutti gli errori a false
+				setErrors({
+					passwordLengthError: false,
+					userNotInsertedError: false,
+					wrongUserError: false,
+					wrongPasswordError: false,
+				});
+				navigate('/');
+			} else {
+				setErrors({
+					passwordLengthError: false,
+					userNotInsertedError: false,
+					wrongUserError: false,
+					wrongPasswordError: false,
+				});
+			}
 		} catch (error) {
 			// gestione dell'errore di validazione
 			if (error instanceof Yup.ValidationError) {
@@ -80,7 +96,7 @@ const LoginPage = (props: TLoginPage) => {
 
 					// Verifica se l'errore riguarda l'utente non inserito
 					if (
-						validationError.path === 'username' &&
+						validationError.path === 'email' &&
 						validationError.type === 'required'
 					) {
 						// Imposta l'errore sull'utente non inserito a true
@@ -105,19 +121,19 @@ const LoginPage = (props: TLoginPage) => {
 						<h1 className="text-3xl">Login</h1>
 					</Grid>
 					<Grid item>
-						{/* Render a text field for the username */}
+						{/* Render a text field for the email */}
 						<TextField
-							name="username"
-							label="Username"
+							name="email"
+							label="email"
 							variant="outlined"
-							value={credentials?.username}
+							value={credentials?.email}
 							onChange={handleChange}
 							error={errors.userNotInsertedError || errors.wrongUserError}
 							helperText={
 								errors.userNotInsertedError
-									? 'Username is required'
+									? 'email is required'
 									: errors.wrongUserError
-									? 'Wrong username'
+									? 'Wrong email'
 									: ''
 							}
 						/>
