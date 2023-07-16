@@ -62,6 +62,7 @@ const LoginPage = (props: TLoginPage) => {
 				});
 				navigate('/');
 			} else {
+				console.log('resp', resp.status);
 				setErrors({
 					passwordLengthError: false,
 					userNotInsertedError: false,
@@ -109,7 +110,7 @@ const LoginPage = (props: TLoginPage) => {
 			}
 
 			// Stampa l'errore di validazione nella console
-			console.log('Validation error:', error);
+			// console.log('Validation error:', error);
 		}
 	};
 
